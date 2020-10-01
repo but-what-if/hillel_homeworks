@@ -100,5 +100,23 @@
 
 
 # task 8 ##############################
+
+# my_str = 'My_long str'
+# l_limit = 'o'
+# l_limit_index = my_str.index(l_limit)
+# r_limit = 't'
+# r_limit_index = my_str.index(r_limit)
+# sub_str = f'{my_str[l_limit_index+1:r_limit_index]}'
+# print(sub_str)
+
+
+
+
+
 # task 9 ##############################
+
+
+
+
+
 # task 10 #############################
