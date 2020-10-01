@@ -85,9 +85,17 @@
 
 
 
-
-
 # task 7 ##############################
+
+# my_str = 'asdfjuj'
+# my_list = []
+# if len(my_str) % 2 != 0:
+#     my_str += '_'
+# for index in range(0, len(my_str), 2):
+#     print(index)
+#     my_list.append(my_str[index:index+2])
+# print(my_list)
+
 
 
 
