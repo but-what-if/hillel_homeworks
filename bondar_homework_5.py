@@ -44,6 +44,16 @@ print(my_list)
 
 # task 6 ##############################
 
+# a)
+my_str = '43 больше чем 34 но меньше чем 56'
+my_list = []
+for value in (my_str.split(' ')):
+    if value.isdigit():
+        my_list.append(int(value))
+print(my_list)
+print(sum(my_list))
+
+# b)
 my_str = '43 больше чем 34 но меньше чем 56'
 my_result = 0
 new_str = ''
