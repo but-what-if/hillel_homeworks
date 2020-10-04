@@ -11,7 +11,6 @@ print(new_list)
 
 
 
-
 # task 2 ##############################################
 
 my_list = ['qwe', 'asd', 'fgh', 'aer', 'aty', 'uty']
