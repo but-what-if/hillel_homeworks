@@ -33,11 +33,11 @@ my_list = [key for key in my_dict_1.keys()]
 my_list.extend(key for key in my_dict_2.keys())
 print(my_list)
 
-# b)
+# б)
 my_list = [key for key in my_dict_1.keys() if key not in my_dict_2.keys()]
 print(my_list)
 
-# c)
+# в)
 new_dict = {}
 my_list = [key for key in my_dict_1.keys() if key not in my_dict_2.keys()]
 for key, value in my_dict_1.items():
@@ -45,7 +45,7 @@ for key, value in my_dict_1.items():
         new_dict.setdefault(key, value)
 print(new_dict)
 
-# d)
+# г)
 new_dict = {}
 keys_list = [key for key in my_dict_1.keys() if key not in my_dict_2.keys()] + [key for key in my_dict_2.keys() if key not in my_dict_1.keys()]
 for key, value in my_dict_1.items():
