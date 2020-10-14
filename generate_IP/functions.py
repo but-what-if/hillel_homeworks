@@ -1,19 +1,28 @@
 from random import randint
 
 
-def get_rand_0_255():
-    return randint(0, 255)
+def get_rand_0_255(mask_val_length=3):
+    max_range_value = 255 if mask_val_length > 2 else (10 ** mask_val_length) - 1
+    min_range_value = 10 ** (mask_val_length - 1)
+    return randint(min_range_value, max_range_value)
 
+
+# Более простой вариант функции
+
+# def get_rand_0_255(mask_val_length):
+#     if mask_val_length <= 1:
+#         min_val = 0
+#         max_val = 9
+#     elif mask_val_length == 2:
+#         min_val = 10
+#         max_val = 99
+#     else:
+#         min_val = 100
+#         max_val = 255
+#     return randint(min_val, max_val)
 
 def get_ip(mask="xxx.xx.xx.x"):
-    mask_list = mask.split('.')
-    mask_list_lens = []
-    print(mask_list)
-    ip_parts = []
-    # ip_parts = [str(get_rand_0_255()) for _ in range(4)]
-    for sym in mask_list:
-        ip_parts = [str(get_rand_0_255()) if len(str(get_rand_0_255())) == len(sym)]
-    return ".".join(ip_parts)
+    return ".".join([str(get_rand_0_255(len(x))) for x in mask.split(".")])
 
 
 
