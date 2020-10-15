@@ -41,3 +41,5 @@ domain = random.choice(get_domains('domains.txt'))
 
 generate_email(name, number, string, domain)
 
+
+
