@@ -14,10 +14,12 @@ def get_domains(file):
 def get_names(file):
     with open(file, 'r') as people_info:
         people_info_list = [line.strip() for line in people_info.readlines()]
+        print(people_info_list)
         names = []
         for val in people_info_list:
             names.append(val.split()[1])
-        return names
+        print(names)
+get_names('names.txt')
 
 
 # task 3 ##############################################
