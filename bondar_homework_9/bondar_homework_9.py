@@ -41,14 +41,33 @@ dates = sort_date(words_sorted_authors_list)
 
 
 # Форматируем даты, убирая буквы с чисел. Список форматированных дат
+def turn_month_into_number(month: str):
+    month_dict = {'January': '01',
+                 'February': '02',
+                 'March': '03',
+                 'April': '04',
+                 'May': '05',
+                 'June': '06',
+                 'July': '07',
+                 'August': '08',
+                 'September': '09',
+                 'October': '10',
+                 'November': '11',
+                 'December': '12'}
+    return month_dict[f'{month}']
+
 def change_data(dates_list: list):
+    list_dates = []
     formated_dates = []
     for item in dates_list:
         if not item[1].isdigit():
             item = item[0] + item[3:]
         else:
             item = item[:2] + item[4:]
-        formated_dates.append(item)
+        list_dates.append(item)
+    for date in list_dates:
+        formated_dates.append(f'{date.split(" ")[0]}/{turn_month_into_number(date.split(" ")[1])}/{date.split(" ")[2]}')
+
     return formated_dates
 formated_dates = change_data(dates)
 
@@ -68,51 +87,54 @@ def create_names_list(authors_info_list: list):
 names = create_names_list(words_sorted_authors_list)
 
 
-def turn_month_into_number(month: str):
-    month_dict = {'January': '01',
-                 'February': '02',
-                 'March': '03',
-                 'April': '04',
-                 'May': '05',
-                 'June': '06',
-                 'July': '07',
-                 'August': '08',
-                 'September': '09',
-                 'October': '10',
-                 'November': '11',
-                 'December': '12'}
-    return month_dict[f'{month}']
-
 # task 2 - Возвращаем словарь ИМЯ: ДАТА для каждой строки
 
-
-# Соединяем списки имен и даты. Возвращает список длинной 120
-
-def chain_list(names: list, dates: list):
+def crete_authors_list_with_dates(names: list, dates: list):
     names_dates = []
+
     for i in range(0, len(names)):
         names_dates.append(names[i])
         names_dates.append(dates[i])
+    for item in names_dates:
+        exist = False
+        index = 0
+        while not exist:
+            if index <= len(names_dates):
+                item = item + names_dates[index+1]
+                exist = True
+            index += 1
+
     return names_dates
-names_dates = chain_list(names, formated_dates)
+authors_list_with_dates = crete_authors_list_with_dates(names, formated_dates)
+print(authors_list_with_dates)
 
 
-# Создаем словари для каждой "строки". Возвращает словарь
-
-def create_authors_dict(names_dates_list: list):
-    for i in range(len(names_dates_list)):
-        authors_dict = {'name': '', 'date': ''}
-        if i % 2 != 0:
-            date = names_dates_list[i]
-            authors_dict['date'] = f'{date.split(" ")[0]}/{turn_month_into_number(date.split(" ")[1])}/{date.split(" ")[2]}'
-        else:
-            name = names_dates_list[i]
-            authors_dict['name'] = name
-    return authors_dict
-authors_dict = create_authors_dict(names_dates)
-print(authors_dict)
+def create_authors_dicts(names: list, dates: list):
+    for name, date in zip(names, dates):
+        authors_dict = dict(name=name, date=date)
+        return authors_dict
+create_authors_dicts(names, formated_dates)
 
 
 
-# dict.setdefault('name', name)
-#             dict.setdefault('date', date.split(" ")[0] + '/' + turn_month_into_number(date.split(" ")[1]) + '/' + date.split(" ")[2])
+# task 3 - Возвращаем список словарей ИМЯ: ДАТА для каждой строки
+
+# Создаем список словарей для каждой "строки". Возвращает список
+
+def create_authors_dict_list(names: list, dates: list):
+    authors_dict_list = [dict(name=name, date=date) for name, date in zip(names, dates)]
+    return authors_dict_list
+authors_dict_list = create_authors_dict_list(names, formated_dates)
+
+
+
+# task 4 - Создать список словарей автор: рождение: смерть:
+
+# def create_authors_b_d_dict(function):
+#     for key, value in function.items():
+#         print(key)
+#         print(value)
+# create_authors_b_d_dict(create_authors_dicts(names, formated_dates))
+
+
+
