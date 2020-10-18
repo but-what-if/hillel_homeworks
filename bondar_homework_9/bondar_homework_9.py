@@ -89,31 +89,24 @@ names = create_names_list(words_sorted_authors_list)
 
 # task 2 - Возвращаем словарь ИМЯ: ДАТА для каждой строки
 
-def crete_authors_list_with_dates(names: list, dates: list):
-    names_dates = []
-
-    for i in range(0, len(names)):
-        names_dates.append(names[i])
-        names_dates.append(dates[i])
-    for item in names_dates:
-        exist = False
-        index = 0
-        while not exist:
-            if index <= len(names_dates):
-                item = item + names_dates[index+1]
-                exist = True
-            index += 1
-
+def sort_authors_list_with_dates(names: list, dates: list):
+    names_dates = sorted([f'{i}-{j}' for i, j in zip(names, dates)])
     return names_dates
-authors_list_with_dates = crete_authors_list_with_dates(names, formated_dates)
-print(authors_list_with_dates)
+authors_list_with_dates = sort_authors_list_with_dates(names, formated_dates)
+# print(authors_list_with_dates)
 
 
-def create_authors_dicts(names: list, dates: list):
-    for name, date in zip(names, dates):
-        authors_dict = dict(name=name, date=date)
-        return authors_dict
-create_authors_dicts(names, formated_dates)
+def create_authors_dicts(sorted_names_dates_list: list):
+    names_dates_1 = []
+    for item in sorted_names_dates_list:
+        names_dates_1.append(item.split('-'))
+        for i in range(len(names_dates_1)):
+            authors_dict_list = dict(name=names_dates_1[i][0], date=names_dates_1[i][1])
+            # return authors_dict_list
+            print(authors_dict_list)
+
+authors_dicts = create_authors_dicts(authors_list_with_dates)
+print(authors_dicts)
 
 
 
@@ -130,11 +123,26 @@ authors_dict_list = create_authors_dict_list(names, formated_dates)
 
 # task 4 - Создать список словарей автор: рождение: смерть:
 
-# def create_authors_b_d_dict(function):
-#     for key, value in function.items():
-#         print(key)
-#         print(value)
-# create_authors_b_d_dict(create_authors_dicts(names, formated_dates))
 
 
+
+def f(lst):
+    res = [{"name": lst[0]["name"], "date": []}]
+    lst.sort(key=lambda x: int(x["date"][-4:]))
+    for dict_ in lst:
+        for i in range(len(res)):
+            if res[i]["name"] == dict_["name"]:
+                res[i]["date"].append(dict_["date"])
+                break
+        else:
+            res.append({"name": dict_["name"], "date": [dict_["date"]]})
+    lst = []
+    for dict_ in res:
+        lst.append({})
+        lst[-1]["name"] = dict_["name"]
+        lst[-1]["birth_date"] = dict_["date"][0]
+        if len(dict_["date"]) > 1:
+            lst[-1]["dead_date"] = dict_["date"][1]
+    return lst
+print(f(authors_dict_list))
 
