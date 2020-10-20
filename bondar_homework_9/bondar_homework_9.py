@@ -8,6 +8,7 @@ import re
 
 
 # Читаем файл в список. Возвращает список
+
 def read_file(filename):
     with open(filename, 'r') as file:
         file_list = [line.rstrip().strip() for line in file.readlines()]
@@ -16,6 +17,7 @@ file_authors_list = read_file('authors.txt')
 
 
 # Выбираем из прочитанного файла строки, в которых есть рождение или смерть авторов. Возвращает список
+
 def sort_words(fileinfo: list):
     critery = ['birthday,', 'death,', 'Birthday,', 'birthday -', 'death -', 'death', 'died']
     authors = []
@@ -32,6 +34,7 @@ words_sorted_authors_list = sort_words(file_authors_list)
 
 
 # Вытягиваем из списка даты для форматирования. Возвращает список дат
+
 def sort_date(authors_info_list: list):
     dates = []
     for item in authors_info_list:
@@ -41,6 +44,7 @@ dates = sort_date(words_sorted_authors_list)
 
 
 # Форматируем даты, убирая буквы с чисел. Список форматированных дат
+
 def turn_month_into_number(month: str):
     month_dict = {'January': '01',
                  'February': '02',
@@ -74,6 +78,7 @@ formated_dates = change_data(dates)
 
 
 # Вытягиваем имена со списка авторов. Список имен
+
 def create_names_list(authors_info_list: list):
     add_list = []
     for item in authors_info_list:
@@ -93,7 +98,6 @@ def sort_authors_list_with_dates(names: list, dates: list):
     names_dates = sorted([f'{i}-{j}' for i, j in zip(names, dates)])
     return names_dates
 authors_list_with_dates = sort_authors_list_with_dates(names, formated_dates)
-# print(authors_list_with_dates)
 
 
 def create_authors_dicts(sorted_names_dates_list: list):
@@ -102,11 +106,8 @@ def create_authors_dicts(sorted_names_dates_list: list):
         names_dates_1.append(item.split('-'))
         for i in range(len(names_dates_1)):
             authors_dict_list = dict(name=names_dates_1[i][0], date=names_dates_1[i][1])
-            # return authors_dict_list
-            print(authors_dict_list)
-
+            return authors_dict_list
 authors_dicts = create_authors_dicts(authors_list_with_dates)
-print(authors_dicts)
 
 
 
@@ -124,25 +125,23 @@ authors_dict_list = create_authors_dict_list(names, formated_dates)
 # task 4 - Создать список словарей автор: рождение: смерть:
 
 
-
-
-def f(lst):
-    res = [{"name": lst[0]["name"], "date": []}]
-    lst.sort(key=lambda x: int(x["date"][-4:]))
-    for dict_ in lst:
+def create_final_dict(authors_dict_list):
+    res = [{"name": authors_dict_list[0]["name"], "date": []}]
+    authors_dict_list.sort(key=lambda x: int(x["date"][-4:]))
+    for dict_ in authors_dict_list:
         for i in range(len(res)):
             if res[i]["name"] == dict_["name"]:
                 res[i]["date"].append(dict_["date"])
                 break
         else:
             res.append({"name": dict_["name"], "date": [dict_["date"]]})
-    lst = []
+    final_authors_dict = []
     for dict_ in res:
-        lst.append({})
-        lst[-1]["name"] = dict_["name"]
-        lst[-1]["birth_date"] = dict_["date"][0]
+        final_authors_dict.append({})
+        final_authors_dict[-1]["name"] = dict_["name"]
+        final_authors_dict[-1]["birth_date"] = dict_["date"][0]
         if len(dict_["date"]) > 1:
-            lst[-1]["dead_date"] = dict_["date"][1]
-    return lst
-print(f(authors_dict_list))
+            final_authors_dict[-1]["dead_date"] = dict_["date"][1]
+    return final_authors_dict
+print(create_final_dict(authors_dict_list))
 
