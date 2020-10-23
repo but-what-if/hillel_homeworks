@@ -100,12 +100,14 @@ def sort_authors_list_with_dates(names: list, dates: list):
 authors_list_with_dates = sort_authors_list_with_dates(names, formated_dates)
 
 
+
 def create_authors_dicts(sorted_names_dates_list: list):
     names_dates_1 = []
     for item in sorted_names_dates_list:
         names_dates_1.append(item.split('-'))
         for i in range(len(names_dates_1)):
             authors_dict_list = dict(name=names_dates_1[i][0], date=names_dates_1[i][1])
+            print(authors_dict_list)
             return authors_dict_list
 authors_dicts = create_authors_dicts(authors_list_with_dates)
 
@@ -119,6 +121,7 @@ def create_authors_dict_list(names: list, dates: list):
     authors_dict_list = [dict(name=name, date=date) for name, date in zip(names, dates)]
     return authors_dict_list
 authors_dict_list = create_authors_dict_list(names, formated_dates)
+print(authors_dict_list)
 
 
 
