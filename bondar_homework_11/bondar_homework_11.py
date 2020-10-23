@@ -1,4 +1,8 @@
 import json
+import requests
+
+# task 1 ##################################################
+
 
 path = 'data.json'
 
@@ -44,5 +48,7 @@ sorted_text_list = sorted(data, key=sort_text)
 
 
 
+
+# task 2 ########################################################
 
 
