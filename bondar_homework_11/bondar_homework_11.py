@@ -1,5 +1,6 @@
 import json
 import requests
+import csv
 
 # task 1 ##################################################
 
@@ -47,8 +48,6 @@ def sort_text(dict_: dict):
 sorted_text_list = sorted(data, key=sort_text)
 
 
-
-
 # task 2 ########################################################
 
 
@@ -58,7 +57,6 @@ url = 'https://api.forismatic.com/api/1.0/'
 def get_response(url):
     res = requests.get(url, params={'method': 'getQuote', 'lang': 'ru', 'format': 'json'})
     return res
-
 
 
 # quote = [res.json() for i in range(100) if res.json()['quoteAuthor'] != '']
@@ -73,8 +71,21 @@ while i <= 100:
         i += 1
 
 
-
-def write_json(data, encoding='utf-8'):
-    with open('quotes.json', 'w', encoding=encoding) as outfile:
+def write_json(data, filename_with_path, encoding='utf-8'):
+    with open(filename_with_path, 'w', encoding=encoding) as outfile:
         json.dump(data, outfile, indent=2, ensure_ascii=False)
-write_json(quote)
+
+
+quote_data = write_json(quote, 'quotes.json')
+
+
+def sort_authors(dict_: dict):
+    name = dict_["quoteAuthor"].split(" ")[-1]
+    return name
+
+def write_csv(data, filename_with_path, encoding='utf-8'):
+    fieldnames = ['Автор', 'Цитата', 'Ссылка']
+    with open(filename_with_path, 'w', encoding=encoding) as outfile:
+        csvwriter = csv.DictWriter(outfile, fieldnames=fieldnames)
+        csvwriter.writeheader()
+        csvwriter.writerows(data)
