@@ -7,6 +7,7 @@ import csv
 
 path = 'data.json'
 
+# Читаем файл
 
 def read_json_file(filename_with_path):
     with open(filename_with_path, encoding='utf-8') as json_file:
@@ -21,12 +22,18 @@ def get_rows(data_list):
         return row
 
 
+# Сортировка по фамилии
+
+
 def sort_surnames(dict_: dict):
     name = dict_["name"].split(" ")[-1]
     return name
 
 
 sorted_surnames_list = sorted(data, key=sort_surnames)
+
+
+# Сортировка по дате смерти
 
 
 def sort_death_date(dict_: dict):
@@ -38,6 +45,9 @@ def sort_death_date(dict_: dict):
 
 
 sorted_death_date_list = sorted(data, key=sort_death_date)
+
+
+# Сортировка по количеству слов
 
 
 def sort_text(dict_: dict):
@@ -54,12 +64,15 @@ sorted_text_list = sorted(data, key=sort_text)
 url = 'https://api.forismatic.com/api/1.0/'
 
 
+# Делаем запрос
+
+
 def get_response(url):
     res = requests.get(url, params={'method': 'getQuote', 'lang': 'ru', 'format': 'json'})
     return res
 
 
-# quote = [res.json() for i in range(100) if res.json()['quoteAuthor'] != '']
+# Формируем список из 100 цитат
 
 
 i = 1
@@ -71,21 +84,58 @@ while i <= 100:
         i += 1
 
 
+# Сортировка по фамилии автора
+
+
+def sort_authors(dict_: dict):
+    name = dict_["quoteAuthor"].strip().split(" ")[-1]
+    return name
+
+
+# Удаление лишних элементов со словарей списка
+
+
+quote_list = []
+for item in quote:
+    d = {i:item[i] for i in item if (i != 'senderName') and (i != 'senderLink')}
+    quote_list.append(d)
+
+
+quote_list = sorted(quote_list, key=sort_authors)
+
+
+# Замена наименований ключей словаря и перестановка элементов
+
+
+sorted_quote_list = []
+for item in quote_list:
+    item['Цитата'] = item.pop('quoteText')
+    item['Автор'] = item.pop('quoteAuthor')
+    item['Ссылка'] = item.pop('quoteLink')
+    item = {'Автор': item['Автор'], 'Цитата': item['Цитата'], 'Ссылка': item['Ссылка']}
+    sorted_quote_list.append(item)
+
+
+# Записываем json файл
+
+
 def write_json(data, filename_with_path, encoding='utf-8'):
     with open(filename_with_path, 'w', encoding=encoding) as outfile:
         json.dump(data, outfile, indent=2, ensure_ascii=False)
 
 
-quote_data = write_json(quote, 'quotes.json')
+quote_data = write_json(sorted_quote_list, 'quotes.json')
 
 
-def sort_authors(dict_: dict):
-    name = dict_["quoteAuthor"].split(" ")[-1]
-    return name
+# Записываем csv файл
 
-def write_csv(data, filename_with_path, encoding='utf-8'):
-    fieldnames = ['Автор', 'Цитата', 'Ссылка']
-    with open(filename_with_path, 'w', encoding=encoding) as outfile:
-        csvwriter = csv.DictWriter(outfile, fieldnames=fieldnames)
+
+def write_csv(data, filename_with_path):
+    fieldsnames = list(data[0].keys())
+    with open(filename_with_path, 'w') as outfile:
+        csvwriter = csv.DictWriter(outfile, fieldnames=fieldsnames, delimiter=';')
         csvwriter.writeheader()
         csvwriter.writerows(data)
+
+
+csv_writer = write_csv(sorted_quote_list, 'quotes.csv')
