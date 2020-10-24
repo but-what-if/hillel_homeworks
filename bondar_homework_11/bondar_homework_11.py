@@ -52,3 +52,29 @@ sorted_text_list = sorted(data, key=sort_text)
 # task 2 ########################################################
 
 
+url = 'https://api.forismatic.com/api/1.0/'
+
+
+def get_response(url):
+    res = requests.get(url, params={'method': 'getQuote', 'lang': 'ru', 'format': 'json'})
+    return res
+
+
+
+# quote = [res.json() for i in range(100) if res.json()['quoteAuthor'] != '']
+
+
+i = 1
+quote = []
+while i <= 100:
+    res = get_response(url)
+    if (res.json()['quoteAuthor'] != '') and (res.json() not in quote):
+        quote.append(res.json())
+        i += 1
+
+
+
+def write_json(data, encoding='utf-8'):
+    with open('quotes.json', 'w', encoding=encoding) as outfile:
+        json.dump(data, outfile, indent=2, ensure_ascii=False)
+write_json(quote)
