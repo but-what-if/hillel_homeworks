@@ -79,6 +79,6 @@ test_dict = {'name': 'Vova', 'age': 26}
 json_writer = FileWriter('test.json', file_data=None)
 json_writer.write()
 
-test_csv = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+test_table = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 csv_writer = FileWriter('test.csv', file_data=None)
 csv_writer.write()
