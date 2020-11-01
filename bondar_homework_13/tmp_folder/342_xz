@@ -1,0 +1,27 @@
+{
+    "filename": "342_xz",
+    "width": 400,
+    "objects": [
+        {
+            "object": {
+                "class": "3",
+                "xmin": 0,
+                "xmax": 100.0
+            }
+        },
+        {
+            "object": {
+                "class": "4",
+                "xmin": 100.0,
+                "xmax": 200.0
+            }
+        },
+        {
+            "object": {
+                "class": "2",
+                "xmin": 200.0,
+                "xmax": 300.0
+            }
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "filename": "046_ms",
+    "width": 393,
+    "objects": [
+        {
+            "object": {
+                "class": "0",
+                "xmin": 0,
+                "xmax": 98.25
+            }
+        },
+        {
+            "object": {
+                "class": "4",
+                "xmin": 98.25,
+                "xmax": 196.5
+            }
+        },
+        {
+            "object": {
+                "class": "6",
+                "xmin": 196.5,
+                "xmax": 294.75
+            }
+        }
+    ]
+}

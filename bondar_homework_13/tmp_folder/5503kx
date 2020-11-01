@@ -1,0 +1,34 @@
+{
+    "filename": "5503kx",
+    "width": 277,
+    "objects": [
+        {
+            "object": {
+                "class": "5",
+                "xmin": 0,
+                "xmax": 69.25
+            }
+        },
+        {
+            "object": {
+                "class": "5",
+                "xmin": 69.25,
+                "xmax": 138.5
+            }
+        },
+        {
+            "object": {
+                "class": "0",
+                "xmin": 138.5,
+                "xmax": 207.75
+            }
+        },
+        {
+            "object": {
+                "class": "3",
+                "xmin": 207.75,
+                "xmax": 277
+            }
+        }
+    ]
+}
