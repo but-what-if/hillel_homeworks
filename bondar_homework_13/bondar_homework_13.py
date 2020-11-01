@@ -27,20 +27,23 @@ def create_right_triangle(vert: tuple, area=100):
     x1 = vert[0]
     y1 = vert[1]
     x2 = x1
-    y2 = area / 0.5
+    y2 = ((2 * area) ** 0.5) + y1
     x3 = y2
     y3 = y1
     tri_coords = [(x1, y1), (x2, y2), (x3, y3)]
     return tuple(tri_coords)
 
 
-tri_coords = create_right_triangle((1, 1))
+coordinates = create_right_triangle((1, 1))
 
 
-def calculate_triangle_area(tri_coords: tuple):
-    ((x1, y1), (x2, y2), (x3, y3)) = tri_coords
+def calculate_triangle_area(triangle_coordinates: tuple):
+    ((x1, y1), (x2, y2), (x3, y3)) = triangle_coordinates
     area = ((x1 - x3) * (y2 - y3) - (y1 - y3) * (x2 - x3)) / 2
     return area
+
+
+
 
 
 # Задание 2 ##########################################

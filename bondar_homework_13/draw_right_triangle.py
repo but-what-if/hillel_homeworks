@@ -2,7 +2,7 @@ import tkinter
 from bondar_homework_13 import create_right_triangle
 
 
-tri_coords = create_right_triangle((1, 1))
+tri_coords = create_right_triangle((100, 100), area=10000)
 
 root = tkinter.Tk()
 root.title("Triangular")
