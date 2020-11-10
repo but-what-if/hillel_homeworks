@@ -1,0 +1,92 @@
+[
+    {
+        "first_name": "Albert",
+        "last_name": "Camus",
+        "date_of_birth": "7 November 1913",
+        "date_of_death": "4 January 1960",
+        "country": "France",
+        "gender": "male",
+        "language": "French"
+    },
+    {
+        "first_name": "Eugen",
+        "last_name": "Ionescu",
+        "date_of_birth": "26 November 1909",
+        "date_of_death": "28 March 1994",
+        "country": "France",
+        "gender": "male",
+        "language": "French, Romanian"
+    },
+    {
+        "first_name": "Jean",
+        "last_name": "Genet",
+        "date_of_birth": "19 December 1910",
+        "date_of_death": "15 April 1986",
+        "country": "France",
+        "gender": "male",
+        "language": "French"
+    },
+    {
+        "first_name": "Arthur",
+        "last_name": "Adamov",
+        "date_of_birth": "23 August 1908",
+        "date_of_death": "15 March 1970",
+        "country": "France",
+        "gender": "male",
+        "language": "French"
+    },
+    {
+        "first_name": "Paul",
+        "last_name": "Eluard",
+        "date_of_birth": "14 December 1895",
+        "date_of_death": "18 November 1952",
+        "country": "France",
+        "gender": "male",
+        "language": "French"
+    },
+    {
+        "first_name": "Andre",
+        "last_name": "Breton",
+        "date_of_birth": "18 February 1896",
+        "date_of_death": "28 September 1966",
+        "country": "France",
+        "gender": "male",
+        "language": "French"
+    },
+    {
+        "first_name": "Alain",
+        "last_name": "Robbe-Grillet",
+        "date_of_birth": "18 August 1922",
+        "date_of_death": "18 February 2008",
+        "country": "France",
+        "gender": "male",
+        "language": "French"
+    },
+    {
+        "first_name": "Michel",
+        "last_name": "Butor",
+        "date_of_birth": "14 September 1926",
+        "date_of_death": "24 August 2016",
+        "country": "France",
+        "gender": "male",
+        "language": "French"
+    },
+    {
+        "first_name": "Marguerite",
+        "last_name": "Duras",
+        "date_of_birth": "4 April 1914",
+        "date_of_death": "3 March 1996",
+        "country": "France",
+        "gender": "female",
+        "language": "French"
+    },
+    {
+        "first_name": "Nathalie",
+        "last_name": "Sarraute",
+        "date_of_birth": "18 July 1900",
+        "date_of_death": "19 October 1999",
+        "country": "France",
+        "gender": "female",
+        "language": "French"
+    }
+]
